@@ -2,9 +2,20 @@ import { useMediaQuery } from "@/hooks/useMediaQuery.ts";
 import DragAndDrop from "../DragAndDrop/index.tsx";
 import { socialMediaComponents } from "./components.tsx";
 import { SocialMediaNames } from "@/constants/socialMedia.ts";
+import { useToast } from "@/hooks/use-toast.ts";
+import { useEffect } from "react";
 
 export default function SocialMedia() {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const { toast } = useToast();
+
+  useEffect(() => {
+    toast({
+      title: "Welcome!",
+      description:
+        "You can drag and drop the social media icons to reorder them.",
+    });
+  }, []);
 
   if (isDesktop) return <DragAndDrop />;
   return (
